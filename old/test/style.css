@@ -1,0 +1,48 @@
+body {
+	background-image:url('images/bg.png');
+	font-family:Arial;
+	margin:0;
+	padding:0;
+}
+
+#container {
+	position:relative;
+	width:960px;
+	min-height:730px;
+	margin: 0 auto;
+	background-image:url('images/bmal.png');
+	background-repeat:no-repeat;
+	background-position:0 90px;
+}
+
+#link {
+	position:absolute;
+	
+}
+
+#label {
+	font-family:Arial;
+	font-size:72px;
+	font-weight:900;
+	float:right;
+    	color:#555;  
+    	text-shadow:0 -1px 0 rgba(0,0,0,0.15),  
+                0 1px 0 rgba(255,255,255,0.8);  
+}
+
+#main-stuff {
+	padding-top:50px;
+}
+
+#the_url {
+	font-size:24px;
+	padding:5px 20px;
+	border:1px solid #999;
+	color:#555;
+}
+
+#the-link {
+	float:right;
+	margin-top:20px;
+	clear:both;
+}
