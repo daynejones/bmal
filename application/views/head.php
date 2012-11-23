@@ -5,7 +5,7 @@
 
 <title><?= isset( $page_title ) ? $page_title : 'Beer Me A Link - URL Shortener'; ?></title>
 
-<link type="text/css" rel="stylesheet" href="<?=base_url()?>/css/main.css" />
+<link type="text/css" rel="stylesheet" href="/css/main.css" />
 <script type="text/javascript" src="<?=base_url()?>js/jquery.min.js"></script>
 
 <?php if ( isset( $javascripts ) ) : ?>
