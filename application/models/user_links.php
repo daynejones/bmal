@@ -24,6 +24,10 @@ class User_links extends CI_Model {
 		// Set the table fields
 		$this->_fields['links_id'] = 'int';
 		$this->_fields['userid'] = 'int';
+		$this->_fields['id'] = 'int'; // Primary key
+		$this->_fields['timestamp'] = 'int';
+		$this->_fields['description'] = 'string';
+		$this->_fields['category_id'] = 'int';
 		
 	}
 
@@ -48,14 +52,34 @@ class User_links extends CI_Model {
 	{
 		// Ensure this record is unique
 		$query = $this->db->get_where('user_links', array( 'userid' => $userid, 'links_id' => $links_id));
-		if ($query->num_rows() > 0) 
-			return false;
+		if ($query->num_rows() > 0) {
+			$result = $query->row_array();
+			return $result['id'];
+		} 
 
 		// Set the current time
 		$timestamp = time();
 
 		$data = array( 'userid' => $userid, 'links_id' => $links_id, 'timestamp' => $timestamp );
-		return $this->db->insert('user_links',$data);
+		$this->db->insert('user_links',$data);
+		return $this->db->insert_id();
+	}
+
+	/**
+	 * Update by id
+	 *
+	 * @param 	int 	$user_links_id
+	 * @param 	array 	$data to be updated
+	 */
+	public function update_by_id($user_links_id,$data)
+	{
+		$data = $this->clean($data);
+
+		if (empty($data))
+			return false;
+
+		$this->db->where('id', $user_links_id);
+		return $this->db->update('user_links', $data); 
 	}
 
 	/**
@@ -104,5 +128,21 @@ class User_links extends CI_Model {
 		$query = $this->db->query("SELECT * FROM links, user_links WHERE user_links.userid=$userid AND user_links.links_id=links.id");
 
 		return $query->result_array();
+	}
+
+	/**
+	 * Clean the input
+	 *
+	 * @param array $data
+	 */
+	private function clean( $data )
+	{
+		foreach ($data as $k=>$v)
+		{
+			if (!isset($this->_fields[$k]))
+				unset($data[$k]);
+		}
+
+		return $data;
 	}
 }

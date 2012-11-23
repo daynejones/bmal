@@ -27,6 +27,7 @@ class User extends CI_Model {
 		$this->_fields['password'] = 'string';
 		$this->_fields['firstname'] = 'string';
 		$this->_fields['lastname'] = 'string';
+		$this->_fields['username'] = 'string';
 		
 	}
 
@@ -150,7 +151,7 @@ class User extends CI_Model {
 	 */
 	private function clean( $data )
 	{
-		foreach ($user as $k=>$v)
+		foreach ($data as $k=>$v)
 		{
 			if (!isset($this->_fields[$k]))
 				unset($data[$k]);
@@ -223,6 +224,15 @@ class User extends CI_Model {
 	}
 
 	/**
+	 * Require login
+	 */
+	public function require_login()
+	{
+		if (!$this->is_logged_in())
+			header('Location: /');
+	}
+
+	/**
 	 * Get by
 	 */
 	public function get_by($col, $val)
@@ -258,5 +268,42 @@ class User extends CI_Model {
 	public function get_by_email( $email )
 	{
 		return $this->get_by( 'email', $email );
+	}
+
+	/**
+	 * Get the users links sorted by category
+	 */
+	public function get_user_links_sorted_by_category($userid)
+	{
+		// First get all of the users links by userid
+		$this->load->model('user_links');
+		$user_links = $this->user_links->get_all_by_userid($userid);
+
+		if (!$user_links)
+			return false;
+
+		// Get the users categories
+		$this->load->model('category');
+		$categories = $this->category->get_categories_by_userid($userid);
+
+		if (!$categories)
+			return $user_links;
+
+		$final_array = array();
+
+		// Now sort the mother f'ers
+		foreach($categories as $k => $category)
+		{
+			$final_array[$k]['category'] = $category['name'];
+			$final_array[$k]['links'] = array();
+
+			foreach($user_links as $ul)
+			{
+				if ($ul['category_id'] == $category['category_id'])
+					$final_array[$k]['links'][] = $ul;
+			}
+		}
+
+		return $final_array;
 	}
 }

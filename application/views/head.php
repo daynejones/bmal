@@ -5,12 +5,12 @@
 
 <title><?= isset( $page_title ) ? $page_title : 'Beer Me A Link - URL Shortener'; ?></title>
 
-<link type="text/css" rel="stylesheet" href="<?=base_url()?>/css/main.css" />
-<script type="text/javascript" src="<?=base_url()?>js/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/main.css" />
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 
 <?php if ( isset( $javascripts ) ) : ?>
 <?php foreach ( $javascripts as $src ) : ?>
-<script type="text/javascript" src="<?=base_url()?><?=$src?>"></script>
+<script type="text/javascript" src="<?=$src?>"></script>
 <?php endforeach; ?>
 <?php endif; ?>
 

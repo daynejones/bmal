@@ -27,6 +27,11 @@ $(document).ready(function(){
 	$("#bmal-link-x").click(function(){
 		getlink.refresh();
 	});
+
+	// Update link details
+	$("#update-bmal-link-details").click(function(){
+		mylinks.update();
+	});
 	
 });
 
@@ -35,6 +40,9 @@ var getlink =
 	not_a_robot : false,
 	long_url : '',
 	short_url : '',
+	link_id : '',
+	link_code : '',
+	user_links_id : '',
 	post : function(the_url)
 	{
 		if (getlink.not_a_robot == false)
@@ -51,9 +59,12 @@ var getlink =
 		$.post('/ajax/getlink',postdata,function(data){
 			if (data.error != true && data.error != 'true') {
 				var url = 'http://bmal.me/'+data.link_code;
+				getlink.link_code = data.link_code;
+				getlink.link_id = data.link_id;
+				getlink.user_links_id = data.user_links_id;
 				$("#bmal-link").text(url);
 				$("#step-two").slideDown();
-				// $("#step-three").slideDown();
+				$("#step-three").slideDown();
 				// $("#another").show();
 				getlink.long_url = the_url;
 				getlink.short_url = url;
@@ -105,6 +116,35 @@ var getlink =
 	copyToClipboard : function(url)
 	{
 		/* Future task */
+	},
+	populate_categories : function(cats)
+	{
+		if (cats.length < 1) {
+			$("#existing-categories-div").hide();
+			return;
+		}	
+
+		var html = '';
+		for(var i=0;i<cats.length;i++) {
+			html += '<option value="'+cats[i].name+'">'+cats[i].name+'</option>';
+		}
+
+		$("#existing-category").append(html);
+	},
+	error_message : function(msg)
+	{
+		alert(msg);
+		console.log(msg);
+	},
+	success_message : function(msg)
+	{
+		var html = '<div id="success-message" style="padding:10px 0;width:800px;background-color:#fafafa;position:fixed;top:0;left:50%;margin-left:-400px;text-align:center;font-size:15px;color:#555;display:none;z-index:1000">';
+		html += msg;
+		html += '</div>';
+
+		$("BODY").prepend(html);
+
+		$("#success-message").slideDown(500).delay(4000).slideUp(500);
 	},
 	refresh : function()
 	{

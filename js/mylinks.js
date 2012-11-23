@@ -26,11 +26,60 @@ var mylinks =
 			}
 		},'json');
 	},
-	delete : function(my_link_id)
+	update : function()
+	{
+		var category = '';
+		var description = '';
+
+		// Validate the details
+		if (getlink.user_links_id == '') {
+			console.log("getlink.link_id not set");
+		}
+
+		// Determine the category to be used - new category takes precedence
+		if ($("#new-category").val() != '')
+			category = $("#new-category").val();
+		else if ($("#existing-category").val() != '')
+			category = $("#existing-category").val();	 
+
+		if (category != '') {
+			var alphanumeric = /^[0-9a-zA-Z\s]+$/;  
+			if (!category.match(alphanumeric)) {
+				getlink.error_message("Your category must contain only letters, numbers, and spaces.");
+				return false;
+			}
+		}
+
+ 		// Get the description
+ 		description = $("#description").val();
+
+ 		if (description == '' && category == '') {
+ 			getlink.error_message("You must add a category or description.");
+ 			return false;
+ 		}
+
+ 		getlink.success_message("Link details were successfully added.");
+
+ 		$("#step-three").slideUp();
+
+ 		var postdata = {
+ 			action : 'update_details',
+ 			user_links_id : getlink.user_links_id
+ 		};
+
+ 		if (category != '')
+ 			postdata.category = category;
+
+ 		if (description != '')
+ 			postdata.description = description;
+
+ 		$.post('/ajax/mylink_actions',postdata);
+	},
+	delete : function(user_links_id)
 	{
 		var postdata =
 		{
-			my_link_id : my_link_id,
+			user_links_id : user_links_id,
 			action : 'delete'
 		};
 		$.post('/ajax/mylink_actions',postdata);

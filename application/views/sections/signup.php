@@ -12,6 +12,10 @@
 			<input type="text" name="lastname" id="lastname" />
 		</div>
 		<div>
+			<label>username (beermealink.com/u/username)</label>
+			<input type="text" name="username" id="username" />
+		</div>
+		<div>
 			<label>email</label>
 			<input type="text" name="email" id="email" />
 		</div>

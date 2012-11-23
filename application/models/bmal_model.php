@@ -90,9 +90,9 @@ class Bmal_model extends CI_Model {
 				// Associate logged in user with the link
 				$sd = $this->_system->user->get_session_data();
 				$link = $this->_system->links->get_by_code($link_code);
-				$this->_system->user_links->add_user_link( $sd['USERID'], $link['id'] );
+				$user_links_id = $this->_system->user_links->add_user_link( $sd['USERID'], $link['id'] );
 			}
-			return array( 'error' => false, 'link_code' => $link_code );
+			return array( 'error' => false, 'link_code' => $link_code, 'link_id' => $link['id'], 'user_links_id' => $user_links_id );
 		}
 
 		$link_code = $this->getLinkCode();
@@ -103,13 +103,16 @@ class Bmal_model extends CI_Model {
 		$data['url'] = $url; 
 
 		if ( $this->_system->db->insert( 'links', $data ) ) {
+
+			$link_id = $this->_system->db->insert_id();
+
 			// If user is logged in
 			if ( $this->_system->user->is_logged_in() ) {
 				// Associate logged in user with the link
 				$sd = $this->_system->user->get_session_data();
-				$this->user_links->add_user_link( $sd['USERID'], $this->_system->db->insert_id() );
+				$user_links_id = $this->user_links->add_user_link( $sd['USERID'], $link_id );
 			}
-			return array( 'error' => false, 'link_code' => $link_code );
+			return array( 'error' => false, 'link_code' => $link_code, 'link_id' => $link_id, 'user_links_id' => $user_links_id );
 		}
 		else
 			return array('error'=>true,'message' => $this->_system->db->_error_message() );

@@ -14,7 +14,18 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.beermealink.com';
+switch($_SERVER['HTTP_HOST']) {
+	case 'tyler.beermealink.com':
+		$config['base_url']	= 'http://tyler.beermealink.com';
+		break;
+	case 'dayne.beermealink.com':
+		$config['base_url']	= 'http://dayne.beermealink.com';
+		break;
+	case 'www.beermealink.com':
+	default:
+		$config['base_url']	= 'http://www.beermealink.com';
+		break;
+}
 
 /*
 |--------------------------------------------------------------------------

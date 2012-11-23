@@ -29,6 +29,7 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules('password', 'password', 'required');
 			$this->form_validation->set_rules('firstname', 'first name', 'required');
 			$this->form_validation->set_rules('lastname', 'last name', 'required');
+			$this->form_validation->set_rules('username', 'username', 'required|is_unique[user.username]');
 
 			if ($this->form_validation->run() == FALSE) {
 				// Just show the form
@@ -97,6 +98,36 @@ class Users extends CI_Controller {
 
 		print_r($session_data);
 
+	}
+
+	/**
+	 * Show the users homepage
+	 */
+	public function show_home($username)
+	{
+		// View arrays
+		$data = array();
+		$head = array();
+
+		$this->load->model('user');
+
+		$user = $this->user->get_by('username',$username);
+
+		$is_logged_in = $this->user->is_logged_in();
+		if ($is_logged_in) {
+			// Set the user
+			$l_user = $this->user->get_logged_in_user();
+			$menu = 'menus/main-user';
+		}
+
+		$data['my_links'] = $this->user->get_user_links_sorted_by_category($user['userid']);
+
+		$this->load->view('head', $head);
+		$this->load->view($menu, $data);
+
+		$this->load->view('homepage',$data);
+
+		$this->load->view('footer');
 	}
 }
 

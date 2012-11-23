@@ -45,7 +45,7 @@ class Link_category extends CI_Model {
 	 */
 	private function clean( $data )
 	{
-		foreach ($user as $k=>$v)
+		foreach ($data as $k=>$v)
 		{
 			if (!isset($this->_fields[$k]))
 				unset($data[$k]);

@@ -24,6 +24,7 @@ class Main extends CI_Controller {
 
 		$head['javascripts'][] = 'js/bmal.js';
 		$head['javascripts'][] = 'js/mylinks.js';
+		$head['javascripts'][] = 'js/user.js';
 		// $head['javascripts'][] = 'js/bg.js';
 	
 		$this->load->view('head', $head);

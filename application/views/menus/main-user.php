@@ -5,7 +5,7 @@
 		</ul>
 		
 		<ul class="menu-right">
-			<li>Welcome, <?= $user['firstname'] ?></li>
+			<li>Welcome<?= !empty($user['firstname']) ? ' ,'.$user['firstname'] : ' back' ?></li>
 		</ul>
 	</div>
 	<div class="clear"></div>

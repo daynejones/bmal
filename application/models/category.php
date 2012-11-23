@@ -71,6 +71,25 @@ class Category extends CI_Model {
 	}
 
 	/**
+	 * Add a category if it does not already exist
+	 *
+	 * @param 	string 	$category
+	 * @return 	int 	$category_id
+	 */
+	public function add_or_find($category)
+	{
+		// Try to find it 
+		$result = $this->get_by_name($category);
+		if ($result)
+			return $result['category_id'];
+
+		// Add it since it doesn't exist
+		$data['name'] = $category;
+		return $this->create($data);
+
+	}
+
+	/**
 	 * Get by
 	 */
 	public function get_by($col, $val)
@@ -106,5 +125,17 @@ class Category extends CI_Model {
 	public function get_by_name( $name )
 	{
 		return $this->get_by( 'name', $name );
+	}
+
+	/**
+	 * Get all of the users categoreis
+	 *
+	 * @param 	int 	$userid
+	 */
+	public function get_categories_by_userid($userid)
+	{
+		$query = $this->db->query("SELECT c.name, c.category_id FROM category AS c, user_category AS uc WHERE c.category_id = uc.category_id AND uc.userid = $userid");
+
+		return $query->result_array();
 	}
 }

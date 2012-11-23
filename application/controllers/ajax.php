@@ -21,7 +21,7 @@ class Ajax extends CI_Controller {
 			echo json_encode( $response );
 		} 
 		else {
-			echo json_encode( array( "link_code" => $response['link_code'] ) );
+			echo json_encode( array( "link_code" => $response['link_code'], "link_id" => $response['link_id'], "user_links_id" => $response['user_links_id'] ) );
 		}
 	}
 	
@@ -116,11 +116,45 @@ EMAIL;
 		switch($_POST['action'])
 		{
 			case 'delete':
-				$response = $this->user_links->delete_by_id($_POST['my_link_id']);
+				$response = $this->user_links->delete_by_id($_POST['user_links_id']);
+				break;
+
+			case 'update_details':
+				// Handle the category if set
+				if (isset($_POST['category'])) {
+					$this->load->model('category');
+					$_POST['category_id'] = $uc['category_id'] = $this->category->add_or_find($_POST['category']);
+					$uc['userid'] = $user['userid'];
+					$this->load->model('user_category');
+					$this->user_category->add($uc);
+				}
+				$response = $this->user_links->update_by_id($_POST['user_links_id'],$_POST);
 				break;
 		}
 
 		echo json_encode($response);
+	}
+
+	/**
+	 * Get user data 
+	 */
+	public function get_user_data()
+	{
+		if (!$this->user->is_logged_in()) {
+			echo json_encode(array(
+				'error'		=>		true,
+				'message'	=>		'User must log in.'
+			));
+			die;
+		}
+
+		$user = $this->user->get_logged_in_user();
+
+		// Get the users categories
+		$this->load->model('category');
+		$json['user_categories'] = $this->category->get_categories_by_userid($user['userid']);
+
+		echo json_encode($json);
 	}
 }
 

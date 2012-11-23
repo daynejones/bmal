@@ -29,13 +29,34 @@
 			<div id="bmal-link-x"></div>
 			<textarea id="bmal-link" readonly="readonly" onclick="this.focus();this.select()"></textarea>
 		</div>
-
 		<div id="url-copied" style="display:none;"></div>
 
 	</div>
 
 	<div id="step-three" class="step" style="display:none;">
 
+		<div class="bmal-link-details">
+			<h3>Add link details</h3>
+			<div>
+				<label>add a new category</label>
+				<input type="text" name="new-category" id="new-category" />
+			</div>
+			<div id="existing-category-div">
+				<label>or choose and existing category</label>
+				<select name="existing-category" id="existing-category">
+					<option value="" selected=selected>choose category</option>
+				</select>
+			</div>
+			<div>
+				<label>description (optional)</label>
+				<textarea name="description" id="description"></textarea>
+			</div>
+			<div>
+				<input type="button" id="update-bmal-link-details" value="update details" class="" />
+			</div>
+		</div>
+
+		<?php /*
 		<h3>Get a copy of your short URL</h3>
 
 		<div id="email-me">
@@ -57,6 +78,7 @@
 			</div>
 
 		</div>
+		*/ ?>
 
 	</div>
 			

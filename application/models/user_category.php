@@ -45,7 +45,7 @@ class User_category extends CI_Model {
 	 */
 	private function clean( $data )
 	{
-		foreach ($user as $k=>$v)
+		foreach ($data as $k=>$v)
 		{
 			if (!isset($this->_fields[$k]))
 				unset($data[$k]);
@@ -73,6 +73,26 @@ class User_category extends CI_Model {
 	}
 
 	/**
+	 * Add a new user_category relationship
+	 *
+	 * @param 	array 	$user_category containing category_id and userid
+	 * @return 	bool 	true/false successs
+	 */
+	public function add($user_category)
+	{
+		$user_category = $this->clean($user_category);
+
+		$query = $this->db->get_where('user_category', array( 'userid' => $user_category['userid'], 'category_id' => $user_category['category_id']));
+
+		if ($query->num_rows() > 0) {
+			// This relationship already exists
+			return true;
+		}
+
+		return $this->create($user_category);
+	}
+
+	/**
 	 * Create the user category connection
 	 *
 	 * @param array $user_category
@@ -95,7 +115,7 @@ class User_category extends CI_Model {
 	 */
 	public function get_by_userid( $userid )
 	{
-		return $this->get_by( 'userid', $userid );
+		return $this->get_all_by( 'userid', $userid );
 	}
 
 	/**
