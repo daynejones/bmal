@@ -16,13 +16,8 @@ class Ajax extends CI_Controller {
 		$the_url = $_POST['the_url'];
 				
 		$response = $this->bmal_model->addLink( $the_url );
-				
-		if ( $response['error'] ) {
-			echo json_encode( $response );
-		} 
-		else {
-			echo json_encode( array( "link_code" => $response['link_code'], "link_id" => $response['link_id'], "user_links_id" => $response['user_links_id'] ) );
-		}
+		
+		echo json_encode( $response );
 	}
 	
 	function sendurl()
@@ -143,7 +138,7 @@ EMAIL;
 		if (!$this->user->is_logged_in()) {
 			echo json_encode(array(
 				'error'		=>		true,
-				'message'	=>		'User must log in.'
+				'message'	=>		'User is not logged in.'
 			));
 			die;
 		}

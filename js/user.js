@@ -8,11 +8,17 @@ $(document).ready(function(){
 });
 
 var user = {
+	logged_in : false,
 	user_categories : null,
 	get_user_data : function(callback)
 	{
 		$.post('/ajax/get_user_data',{},function(data){
-			callback(data);
+			if (data.logged_in) {
+				callback(data);
+				user.logged_in = true;
+			} else {
+				user.logged_in = false;
+			}
 		},'json');
 	},
 	data_handler : function(data)

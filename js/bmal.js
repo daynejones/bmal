@@ -62,15 +62,17 @@ var getlink =
 				getlink.link_code = data.link_code;
 				getlink.link_id = data.link_id;
 				getlink.user_links_id = data.user_links_id;
-				$("#bmal-link").text(url);
+				$("#bmal-link").val(url);
 				$("#step-two").slideDown();
-				$("#step-three").slideDown();
 				// $("#another").show();
 				getlink.long_url = the_url;
 				getlink.short_url = url;
-				mylinks.reload();
 				// $("#your_email").focus();
-				/* getlink.copyToClipboard(url); */
+				// getlink.copyToClipboard(url);
+				if (user.logged_in) {
+					$("#step-three").slideDown();
+					mylinks.reload();
+				}
 			}
 		},'json');
 	},
@@ -149,7 +151,7 @@ var getlink =
 	refresh : function()
 	{
 		$('input[type=text]').val('');
-		$('textarea').val('');
+		$('#bmal_link').val('');
 		$('#step-two').hide();
 		$('#step-three').hide();
 		$('#another').hide();
