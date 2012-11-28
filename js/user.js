@@ -13,11 +13,11 @@ var user = {
 	get_user_data : function(callback)
 	{
 		$.post('/ajax/get_user_data',{},function(data){
-			if (data.logged_in) {
+			if (data.logged_in == "false") {
+				user.logged_in = false;
+			} else {
 				callback(data);
 				user.logged_in = true;
-			} else {
-				user.logged_in = false;
 			}
 		},'json');
 	},
