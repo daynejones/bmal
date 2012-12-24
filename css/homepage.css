@@ -1,0 +1,6 @@
+.squares .section { margin:20px 0; border:1px solid #ddd; background-color:#fafafa; padding:20px; }
+.squares .section h3 { font-size:24px; margin-bottom:15px; }
+.squares .section ul { list-style-type:none; margin:0; padding:0; }
+
+.squares .section span.url { font-style:italic; color:#888; }
+.squares .section a { color:#13617d; text-decoration:none;}

@@ -14,6 +14,8 @@ h1, h2, h3, h4, h5, h6 { font-weight:100; }
 
 .wrapper { width:800px; margin:0px auto 50px auto; }
 
+.main-stuff { margin-top:100px; }
+
 .container { background-color:#fff; border:1px solid #ccc; box-shadow:0px 1px 0px #fff; position:relative; }
 .container-inner { margin:25px; }
 #container { width:760px; margin:30px auto; min-height:60px; }

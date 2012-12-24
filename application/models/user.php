@@ -286,8 +286,11 @@ class User extends CI_Model {
 		$this->load->model('category');
 		$categories = $this->category->get_categories_by_userid($userid);
 
-		if (!$categories)
-			return $user_links;
+		if (!$categories) {
+			$final_array['category'] = "Uncategorized";
+			$final_array['links'] = $user_links;
+			return $final_array;
+		}
 
 		$final_array = array();
 
@@ -297,11 +300,19 @@ class User extends CI_Model {
 			$final_array[$k]['category'] = $category['name'];
 			$final_array[$k]['links'] = array();
 
-			foreach($user_links as $ul)
+			foreach($user_links as $k2 => $ul)
 			{
-				if ($ul['category_id'] == $category['category_id'])
+				if ($ul['category_id'] == $category['category_id']) {
 					$final_array[$k]['links'][] = $ul;
+					unset($user_links[$k2]);
+				}
 			}
+		}
+
+		// Set the uncategorized links as necessary
+		if (!empty($user_links)) {
+			$final_array[count($categories)]['category'] = "Uncategorized";
+			$final_array[count($categories)]['links'] = $user_links; // Whats left over
 		}
 
 		return $final_array;

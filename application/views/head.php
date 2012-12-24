@@ -6,6 +6,13 @@
 <title><?= isset( $page_title ) ? $page_title : 'Beer Me A Link - URL Shortener'; ?></title>
 
 <link type="text/css" rel="stylesheet" href="/css/main.css" />
+
+<?php if ( isset( $css ) ) : ?>
+<?php foreach ( $css as $href ) : ?>
+<link type="text/css" rel="stylesheet" href="<?=$href?>" />
+<?php endforeach; ?>
+<?php endif; ?>
+
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 
 <?php if ( isset( $javascripts ) ) : ?>

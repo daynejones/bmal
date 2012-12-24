@@ -117,8 +117,14 @@ class Users extends CI_Controller {
 		if ($is_logged_in) {
 			// Set the user
 			$l_user = $this->user->get_logged_in_user();
+			$data['user'] = $this->user->get_by_userid($l_user["userid"]);
 			$menu = 'menus/main-user';
+		} else {
+			// User is not logged in
+			$menu = 'menus/main';
 		}
+
+		$head['css'][] = '/css/homepage.css';
 
 		$data['my_links'] = $this->user->get_user_links_sorted_by_category($user['userid']);
 
