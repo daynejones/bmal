@@ -46,7 +46,7 @@ input[type=submit], input[type=button] { background-color: #36B4E3; border: 1px 
 
 /*** MENU ***/
 
-div.menu { background-color: #36B4E3; width: 100%; position: absolute; top: 0; left: 0 }
+div.menu { background-color: #36B4E3; width: 100%; position: absolute; top: 0; left: 0; min-width: 420px }
 div.menu-inner { width: 100%; max-width: 85em; margin: 0 auto; }
 ul.menu-left { float:left; }
 ul.menu-right { float:right; }
@@ -109,10 +109,10 @@ div.login-outer { margin-top:10em; margin-bottom:4em; width:30em; margin-left:au
 	#main-stuff { padding-top: 0 }
 	
 	#the_url { margin: 10px auto; width: 100% }
-	#get_link { margin: 10px auto; width: 100% }
+	#get_link { margin: 0 auto; width: 100% }
 }
 
-@media screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 640px) {
  	/*** IPHONE STUFF ***/
 	#label h1 { font-size: 1300% }
 	.step h3 { font-size: 7em }
