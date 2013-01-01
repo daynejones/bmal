@@ -78,6 +78,8 @@ class User_links extends CI_Model {
 		if (empty($data))
 			return false;
 
+		return $data;
+
 		$this->db->where('id', $user_links_id);
 		return $this->db->update('user_links', $data); 
 	}
@@ -116,6 +118,18 @@ class User_links extends CI_Model {
 	public function get_by_userid( $userid )
 	{
 		return $this->get_by( 'userid', $userid );
+	}
+
+	/**
+	 * Get the full link by the user_links_id
+	 *
+	 * @param 	int 	$user_links_id
+	 */
+	public function get_full_by_user_links_id( $user_links_id )
+	{
+		$query = $this->db->query("SELECT * FROM links, user_links WHERE user_links.id=$user_links_id AND user_links.links_id=links.id");
+
+		return $query->row_array();
 	}
 
 	/**

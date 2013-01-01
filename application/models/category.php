@@ -61,7 +61,7 @@ class Category extends CI_Model {
 	 */
 	private function clean( $data )
 	{
-		foreach ($user as $k=>$v)
+		foreach ($data as $k=>$v)
 		{
 			if (!isset($this->_fields[$k]))
 				unset($data[$k]);
@@ -78,10 +78,12 @@ class Category extends CI_Model {
 	 */
 	public function add_or_find($category)
 	{
-		// Try to find it 
-		$result = $this->get_by_name($category);
-		if ($result)
-			return $result['category_id'];
+		if (!empty($category)) {
+			// Try to find it 
+			$result = $this->get_by_name($category);
+			if ($result)
+				return $result['category_id'];
+		}
 
 		// Add it since it doesn't exist
 		$data['name'] = $category;
