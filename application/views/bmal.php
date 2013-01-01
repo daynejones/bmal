@@ -13,12 +13,10 @@
 
 		<div id="the-link">
 			<h3>Paste the long URL</h3>
-			<table cellpadding="0" cellspacing="10px" style="margin:0 auto;">
-				<tr>
-					<td valign="middle"><input type="text" name="the_url" id="the_url" /></td>
-					<td valign="middle"><input type="button" name="get_link" id="get_link" value="beer me" /></td>
-				</tr>
-			</table>
+			<div class="beer-me">
+				<input type="text" name="the_url" id="the_url" />
+				<input type="button" name="get_link" id="get_link" value="beer me" />
+			</div>
 		</div>
 
 	</div>
