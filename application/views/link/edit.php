@@ -2,11 +2,12 @@
 <div id="edit-link" class="container">
 	<div class="container-inner">
 		<h3>Edit Link</h3>
-		<form action="/link/edit/<?=$link['id']?>" method="POST">
+		<form action="/link/edit/<?=$link['id']?>" method="POST" id="edit-link-form">
 			<div>
-				<span><?= $link['url'] ?></span> - <span>http://bmal.me/<?= $link['code'] ?></span>
+				<div class="url">http://bmal.me/<?= $link['code'] ?></div>
+				<div class="url"><?= $link['url'] ?></div>
 			</div>
-			<div>
+			<div id="description-title">
 				<label>Description</label>
 				<textarea id="description" name="description"><?= $link['description'] ?></textarea>
 			</div>

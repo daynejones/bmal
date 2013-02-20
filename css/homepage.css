@@ -1,6 +1,19 @@
+#main-stuff { padding-top: 60px; line-height: 2.2em }
+
 .squares .section { margin:20px 0; border:1px solid #ddd; background-color:#fafafa; padding:20px; }
-.squares .section h3 { font-size:24px; margin-bottom:15px; }
+.squares .section h3 { font-size:3em; margin-bottom:15px; font-weight: 100 }
 .squares .section ul { list-style-type:none; margin:0; padding:0; }
 
 .squares .section span.url { font-style:italic; color:#888; }
-.squares .section a { color:#13617d; text-decoration:none;}
+.squares .section a { color:#13617d; text-decoration:none }
+
+.section li { padding: 10px 0 }
+.section li > a { display: block; font-size: 1.6em }
+.section li > .url { display: block; font-size: 1.6em; word-wrap: break-word; }
+.section li > .description { font-size: 1.6em }
+.section li:first-child, .section li:last-child { padding: 0 }
+
+/*** NARROW COMPUTER SCREEN ***/
+@media screen and (max-width: 585px) {
+	#main-stuff { padding-top: 30px; }
+}

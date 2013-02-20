@@ -12,7 +12,7 @@
 			<input type="text" name="lastname" id="lastname" />
 		</div>
 		<div>
-			<label>username (beermealink.com/u/username)</label>
+			<label>username <span id="username-details">(beermealink.com/u/username)</span></label>
 			<input type="text" name="username" id="username" />
 		</div>
 		<div>

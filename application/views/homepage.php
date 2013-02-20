@@ -1,4 +1,4 @@
-<div class="main-stuff">
+<div id="main-stuff">
 
 <?php if(isset($my_links)) : ?>
 

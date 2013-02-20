@@ -16,6 +16,7 @@
 			<div class="beer-me">
 				<input type="text" name="the_url" id="the_url" />
 				<input type="button" name="get_link" id="get_link" value="beer me" />
+				<div class="clear"></div>
 			</div>
 		</div>
 

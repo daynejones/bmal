@@ -22,10 +22,11 @@ input[type=submit], input[type=button] { background-color: #36B4E3; border: 1px 
 #label h1 { color: #333333 !important; font-family: helvetica; font-size: 10.5em; font-weight: 100; letter-spacing: 0.04em; }
 #label h2 { font-size:1.8em; text-shadow:0px 1px 0px #fff; font-weight:100; }  
 
-.step { margin-bottom:5em; text-align:center; }
+.step { text-align:center; }
 .step h3 { margin-bottom:2%; text-shadow:0px 1px 0px #fff; font-size:2em; font-weight: 100}
-.step textarea { width:61em; height:4em; padding:.3em; border:1px solid #ccc; font-size:1.4em; font-family:Arial, Helvetica; }
+.step textarea { width:61em; padding:.3em; border:1px solid #ccc; font-size:1.4em; font-family:Arial, Helvetica; }
 .step-desc { font-size:1.5em; color:#111; font-family:Arial; }
+#step-two { margin-top: 3em; }
 
 .offer-text { font-size:1.2em; color:333; }
 
@@ -36,17 +37,20 @@ input[type=submit], input[type=button] { background-color: #36B4E3; border: 1px 
 .ws_ad { margin:2.5em auto; width:80em; }
 
 .bmal-link-outer { position:relative; }
-#bmal-link { font-size:8.5em; resize:none; width:100%; height:9.5em; border:none; background:transparent; overflow:hidden; text-align:center; font-family:helvetica; font-weight:100; color:#333; }
+#bmal-link { font-size:8.5em; height: 1.6em; resize:none; width:100%; border:none; background:transparent; overflow:hidden; text-align:center; font-family:helvetica; font-weight:100; color:#333; }
 
-.bmal-link-details { width:480px; margin:0 auto; padding:20px; background-color:#fafafa; border:1px solid #ddd; }
+.bmal-link-details { width:480px; margin:3em auto 0; padding:20px; background-color:#fafafa; border:1px solid #ddd; line-height: 2.2em}
 .bmal-link-details div { margin-bottom:10px; text-align:left; }
-.bmal-link-details label { display:block; text-align:left; margin-bottom:3px; }
+.bmal-link-details label { display:block; text-align:left; margin-bottom:3px; font-size: 1.6em }
 .bmal-link-details textarea, #edit-link textarea { display:block; border:1px solid #ccc; background-color:#ddd; box-shadow:0px 1px 0px #fff; height:60px; resize:none; padding:8px; width:100%; }
+.bmal-link-details h3 { font-size: 3em }
 #bmal-link-x { background-image:url('/images/x.png'); height:1.6em; width:1.6em; cursor:pointer; position:absolute; top:.5em; right:.5em; }
 
 .beer-me { margin: 0 auto; max-width: 550px }
 #the_url { width: 15.6em; margin-right: 10px; float: left; }
 #get_link { width: 25%; float: right }
+
+#existing-category { font-size: 1.4em; padding: 0.5em 1.2em 0.5em 0.1em; }
 
 /*** MENU ***/
 
@@ -64,7 +68,8 @@ ul.menu-right { float:right; }
 div.signup-outer { margin-top:10em; margin-bottom:4em; width:30em; margin-left:auto; margin-right:auto; }
 .signup-outer input[type=text], .signup-outer input[type=password] { width:100%; }
 .signup-outer div { margin-bottom:1em; }
-
+.signup-outer label { font-size: 2.2em }
+#username-details { display: block; float: right; font-size: 0.63em; line-height: 1.6em }
 /*** LOGIN ***/
 
 div.login-outer { margin-top:10em; margin-bottom:4em; width:30em; margin-left:auto; margin-right:auto; }
@@ -73,7 +78,7 @@ div.login-outer { margin-top:10em; margin-bottom:4em; width:30em; margin-left:au
 
 /*** MY LINKS ***/
 
-.my_links { clear: both; margin-top: 13em; }
+.my_links { clear: both; margin-top: 5em; }
 
 .link { border:1px solid transparent; position: relative }
 .link a { color:#13617d; text-decoration:none; }
@@ -89,15 +94,19 @@ div.login-outer { margin-top:10em; margin-bottom:4em; width:30em; margin-left:au
 .login-outer label { font-size: 2.2em }
 
 /*** EDIT LINK ***/
-#edit-link { width:500px; margin:100px auto 0 auto; }
-#edit-link div { margin-top:20px; }
-#edit-link label { display:block; margin-bottom:5px; font-size: 1.8em }
-#edit-link span { font-size:20px; font-weight:100; }
-#edit-link h3 { font-size: 2.8em }
+#edit-link { width:500px; margin:100px auto 0 auto; line-height: 2.2em }
+#edit-link div {}
+#edit-link label { display:block; margin-bottom:5px; font-size: 1.6em }
+#edit-link span { font-size:1.6em; font-weight:100; }
+#edit-link h3 { font-size:3em; font-weight: 100; margin-bottom: 0.5em }
 #category { font-size: 1.4em; padding: 0.5em 1.2em 0.5em 0.1em;}
 
 .short-date { width: 220px; display: none}
 .long-date { width: 220px }
+
+#edit-link .url { font-size: 1.6em; word-wrap: break-word; }
+#edit-link #description-title { }
+#edit-link-form > div { padding: 1em 0 ;}
 
 /*** SMALLER WINDOW CSS ***/
 
